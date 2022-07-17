@@ -105,6 +105,7 @@ class Kehadiran extends AUTH_Controller {
 			$data = $this->M_kehadiran->select_by_idGuru($this->userdata->userid);
 		}
 
+
 		$objPHPExcel = new PHPExcel(); 
 		$objPHPExcel->setActiveSheetIndex(0); 
 		$rowCount = 1; 
@@ -115,15 +116,18 @@ class Kehadiran extends AUTH_Controller {
 		$rowCount++;
 
 		foreach($data as $value){
+			// print_r($value);
 		    $objPHPExcel->getActiveSheet()->SetCellValue('A'.$rowCount, $value->guru);
 		    $objPHPExcel->getActiveSheet()->SetCellValue('B'.$rowCount, $value->masuk_guru);
 		    $objPHPExcel->getActiveSheet()->SetCellValue('C'.$rowCount, $value->pulang_guru);
 		    $rowCount++; 
 		} 
-
+		
 		$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel); 
 		$objWriter->save('./assets/excel/Data Kehadiran.xlsx'); 
 
+		// echo "test";
+		// die;
 		$this->load->helper('download');
 		force_download('./assets/excel/Data Kehadiran.xlsx', NULL);
 	}

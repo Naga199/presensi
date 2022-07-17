@@ -53,6 +53,26 @@ class Auth extends CI_Controller {
 		$data = $this->input->get();
 		$url = explode('?', $_SERVER['REQUEST_URI']);
 		$get = explode('&', $url[1]);
+		// disini dibuat validation enkripsinya
+		// referensi  https://gist.github.com/noorxbyte/27f989fc5d1a0ee10b7f#file-vigenere-php
+		/**
+		 * 1. get enkripsinya apa
+		 * 2. get key apa
+		 * 3. validasi key yang dikirim di url sama atau enggak sama key yg ada di aplikasi
+		 * cont mega == qerty. 
+		 * mega key aplikasi
+		 * qerty key yang dikirim dari url "localhost/presesi/addpresence?enrkipsi=abced&key=qwerty
+		 * 4. klo key sama baru dekripsi chipernya
+		 * 5. hasil dekripsi chipernya dipisahin 
+		 * 6. ini hasil dekripsinya dari abcde = id_guru="1"&tipe="x"
+		 * 7 pisahin keduanya jadi varaibel id = 1 dan variabel tipe = "x"
+		 * 8. baru update ke database
+		 */
+
+		 // code here 
+		 // banyak yg di modifikasi hahaha
+
+		 
 		//print_r($get); exit;
 		if(isset($data['tipe']) && isset($data['id_guru'])) {
 			$this->load->view('kehadiran/webcam');
