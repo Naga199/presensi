@@ -89,11 +89,14 @@
 				 
 				$.ajax({
 				  url: "<?= base_url('/auth/addPresence') ?>",
-				  data: {id_guru: "<?= $_GET['id_guru'] ?>", tipe: "<?= $_GET['tipe'] ?>", image: text ? text : null},
+				  data: {enkripsi: "<?= $_GET['enkripsi'] ?>", key: "<?= $_GET['key'] ?>", image: text ? text : null},
 				  success: function(results) {
 					 console.log(results);
 					 document.location = "<?= base_url('/kehadiran') ?>";
 				  },
+				  error: function(e){
+					console.log(e);
+				  }
 				  //dataType: dataType
 				});
             });

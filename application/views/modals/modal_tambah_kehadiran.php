@@ -8,6 +8,8 @@
       <span class="input-group-addon" id="sizing-addon2" style="border: 0">
         <i class="glyphicon glyphicon-user"></i>
       </span>
+      <input type="hidden" class="form-control" placeholder="Nama" id="enkripsi" name="enkripsi" value="<?= $enkripsi; ?>" aria-describedby="sizing-addon2" style="border: 0" readOnly>
+      <input type="hidden" class="form-control" placeholder="Nama" id="keychipher" name="keychipher" value="<?= $keychipher; ?>" aria-describedby="sizing-addon2" style="border: 0" readOnly>
       <input type="hidden" class="form-control" placeholder="Nama" id="id_guru" name="id_guru" value="<?= $userdata->userid; ?>" aria-describedby="sizing-addon2" style="border: 0" readOnly>
       <input type="hidden" class="form-control" placeholder="Nama" id="tipe" name="tipe" value="1" aria-describedby="sizing-addon2" style="border: 0" readOnly>
       <input type="text" class="form-control" placeholder="Nama" name="nama" value="<?= $userdata->nama; ?>" aria-describedby="sizing-addon2" style="border: 0" readOnly>
@@ -39,7 +41,7 @@ $(function () {
 		$('#tipe').val(action);
 		$('#qrcodeholder').empty();
 		$('#qrcodeholder').qrcode({
-			text    : "<?= base_url() ?>auth/addPresence?id_guru="+$('#id_guru').val()+"&tipe="+$('#tipe').val(),
+			text    : "<?= base_url() ?>auth/addPresence?enkripsi="+$('#enkripsi').val()+"&key="+$('#keychipher').val(), //original code auth/addPresence?id_guru="+$('#id_guru').val()+"&tipe="+$('#tipe').val()
 			render  : "canvas", // 'canvas' or 'table'. Default value is 'canvas'
 			background : "#ffffff",
 			foreground : "#000000",

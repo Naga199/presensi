@@ -53,6 +53,25 @@ class Auth extends CI_Controller {
 		$data = $this->input->get();
 		$url = explode('?', $_SERVER['REQUEST_URI']);
 		$get = explode('&', $url[1]);
+
+		// decript algoritma
+		$keychipher = "mega";
+		// var_dump($data);
+
+		if($_GET["key"] == $keychipher){
+			$dekripsi = $this->chiper->decrypt("mega",$_GET["enkripsi"]);
+			$dekripsi_arr = explode("x", $dekripsi);
+			$id_guru = preg_replace("/[^0-9]/", '', $dekripsi_arr[1]);
+			$tipe_url = preg_replace("/[^0-9]/", '', $dekripsi_arr[2]);
+			$data["id_guru"] = $id_guru;
+			$data["tipe"]=$tipe_url;
+			// var_dump($data);
+		}else{
+			echo "keychiper tidak valid";
+			exit;
+		}
+		// var_dump($data);
+		// die;
 		// disini dibuat validation enkripsinya
 		// referensi  https://gist.github.com/noorxbyte/27f989fc5d1a0ee10b7f#file-vigenere-php
 		/**

@@ -13,11 +13,20 @@ class Kehadiran extends AUTH_Controller {
 	public function index() {
 		$data['userdata'] = $this->userdata;
 
+		// begin::string yang di engkripsi dengan algoritma vigenere chipher
+		$key = "mega";
+		$text = "idgurux".$data['userdata']->userid."dantipex1";
+		$data["enkripsi"] = $this->chiper->encrypt($key, $text);
+		$data["keychipher"] = $key;
+		// end:: string yang di enkripsi
+
 		$data['page'] = "kehadiran";
 		$data['judul'] = "Data Kehadiran";
 		$data['deskripsi'] = "Data Kehadiran";
-
 		$data['modal_tambah_kehadiran'] = show_my_modal('modals/modal_tambah_kehadiran', 'tambah-kehadiran', $data);
+		
+		$test2 = $this->chiper->decrypt("mega", "uh_mudy=1&zibi=1");
+		// var_dump($data["enkripsi"], $test2);
 
 		$this->template->views('kehadiran/home', $data);
 	}
