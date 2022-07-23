@@ -11,7 +11,31 @@ class Guru extends AUTH_Controller {
 
 	public function index() {
 		$data['userdata'] = $this->userdata;
-		$data['dataguru'] = $this->M_guru->select_all();
+		
+		// begin: implementation algoritma chipher
+		$guru = $this->M_guru->select_all();
+		$keychipher = "megaanadya";
+		$array_guru_encrypt = [];
+		foreach ($guru as $key => $value) {
+			$array_guru_encrypt[$key]["id_guru"] = $value->id_guru;
+			$array_guru_encrypt[$key]["nama_guru"] = $this->chiper->encrypt($keychipher, $value->nama_guru);
+			$array_guru_encrypt[$key]["nuptk_guru"] = $value->nuptk_guru;
+			$array_guru_encrypt[$key]["ptk_guru"] = $value->ptk_guru;
+			$array_guru_encrypt[$key]["kode_guru"] = $value->kode_guru;
+			$array_guru_encrypt[$key]["jk_guru"] = $value->jk_guru;
+			$array_guru_encrypt[$key]["ttl_guru"] = $value->ttl_guru;
+			$array_guru_encrypt[$key]["asal_kota"] = $value->asal_kota;
+			$array_guru_encrypt[$key]["telp_guru"] = $value->telp_guru;
+			$array_guru_encrypt[$key]["email_guru"] = $value->email_guru;
+			$array_guru_encrypt[$key]["statuskepegawaian_guru"] = $value->statuskepegawaian_guru;
+			$array_guru_encrypt[$key]["alamat_guru"] = $this->chiper->encrypt($value->alamat_guru, $keychipher);
+			$array_guru_encrypt[$key]["password_guru"] = $value->password_guru;
+			$array_guru_encrypt[$key]["kota"] = $value->kota;
+			$array_guru_encrypt[$key]["posisi"] = $this->chiper->encrypt($value->posisi, $keychipher);
+		}
+		$data["dataguru"] = (object) $array_guru_encrypt;
+		// var_dump($data["dataguru"]);die;
+
 		$data['dataPosisi'] = $this->M_posisi->select_all();
 		$data['dataKota'] = $this->M_kota->select_all();
 
@@ -25,10 +49,36 @@ class Guru extends AUTH_Controller {
 	}
 
 	public function tampil() {
-		$data['dataguru'] = $this->M_guru->select_all();
+		$guru = $this->M_guru->select_all();
 		if($this->userdata->type === 'guru') {
-			$data['dataguru'] = $this->M_guru->select_by_idGuru($this->userdata->userid);
+			$guru = $this->M_guru->select_by_idGuru($this->userdata->userid);
 		}
+
+		// begin: implementation algoritma chipher
+		// $guru = $this->M_guru->select_all();
+		$keychipher = "megaanadya";
+		$array_guru_encrypt = [];
+		foreach ($guru as $key => $value) {
+			$array_guru_encrypt[$key]["id_guru"] = $value->id_guru;
+			$array_guru_encrypt[$key]["nama_guru"] = $this->chiper->encrypt($keychipher, $value->nama_guru);
+			$array_guru_encrypt[$key]["nuptk_guru"] = $value->nuptk_guru;
+			$array_guru_encrypt[$key]["ptk_guru"] = $value->ptk_guru;
+			$array_guru_encrypt[$key]["kode_guru"] = $value->kode_guru;
+			$array_guru_encrypt[$key]["jk_guru"] = $value->jk_guru;
+			$array_guru_encrypt[$key]["ttl_guru"] = $value->ttl_guru;
+			$array_guru_encrypt[$key]["asal_kota"] = $value->asal_kota;
+			$array_guru_encrypt[$key]["telp_guru"] = $value->telp_guru;
+			$array_guru_encrypt[$key]["email_guru"] = $value->email_guru;
+			$array_guru_encrypt[$key]["statuskepegawaian_guru"] = $value->statuskepegawaian_guru;
+			$array_guru_encrypt[$key]["alamat_guru"] = $this->chiper->encrypt($value->alamat_guru, $keychipher);
+			$array_guru_encrypt[$key]["password_guru"] = $value->password_guru;
+			$array_guru_encrypt[$key]["kota"] = $value->kota;
+			$array_guru_encrypt[$key]["posisi"] = $this->chiper->encrypt($value->posisi, $keychipher);
+		}
+		$data["dataguru"] = (object) $array_guru_encrypt;
+		// end: implementation algoritma chipher
+
+		// var_dump($data);die;
 		$this->load->view('guru/list_data', $data);
 	}
 

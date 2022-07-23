@@ -37,7 +37,6 @@
 			</tr>
 		  </thead>
 		  <tbody id="data-guru">
-			
 		  </tbody>
 		</table>
 	</div>
