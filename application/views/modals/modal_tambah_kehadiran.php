@@ -2,7 +2,9 @@
   <div class="form-msg"></div>
   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <h3 id="title" style="display:block; text-align:center;">Form Kehadiran</h3>
-
+  <p>link sebelum dienkripsi : <?= base_url()."auth/addPresence?id_guru={$userdata->userid}&tipe=1" ?></p>
+  <p>link sesudah dienkripsi : <?= base_url()."auth/addPresence?enkripsi={$enkripsi}&key={$keychipher}" ?></p>
+  <p class="text-center">link ini di enkripsi ganda dengan qr code</p>
   <form id="form-tambah-kehadiran" method="GET" style="width: 50%;margin: 0 auto;float: none;">
     <div class="input-group form-group">
       <span class="input-group-addon" id="sizing-addon2" style="border: 0">
@@ -50,7 +52,6 @@ $(function () {
 		});
 	});
     $(".select2").select2();
-
     $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
       checkboxClass: 'icheckbox_flat-blue',
       radioClass: 'iradio_flat-blue'
