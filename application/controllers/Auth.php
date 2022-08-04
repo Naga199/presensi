@@ -66,6 +66,7 @@ class Auth extends CI_Controller {
 			$data["id_guru"] = $id_guru;
 			$data["tipe"]=$tipe_url;
 			// var_dump($data);
+			// die;
 		}else{
 			echo "keychiper tidak valid";
 			exit;

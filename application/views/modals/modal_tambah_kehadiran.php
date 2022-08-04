@@ -41,6 +41,10 @@ $(function () {
 		$('#btn').text(myVal);
 		$('#btn').prepend('<i class="glyphicon glyphicon-ok"></i>');
 		$('#tipe').val(action);
+    let enkripsi = $('#enkripsi').val();
+    enkripsi = enkripsi.replace("id1", action);
+    $('#enkripsi').val(enkripsi);
+    console.log(action, enkripsi);
 		$('#qrcodeholder').empty();
 		$('#qrcodeholder').qrcode({
 			text    : "<?= base_url() ?>auth/addPresence?enkripsi="+$('#enkripsi').val()+"&key="+$('#keychipher').val(), //original code auth/addPresence?id_guru="+$('#id_guru').val()+"&tipe="+$('#tipe').val()
