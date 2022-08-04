@@ -42,12 +42,11 @@ $(function () {
 		$('#btn').prepend('<i class="glyphicon glyphicon-ok"></i>');
 		$('#tipe').val(action);
     let enkripsi = $('#enkripsi').val();
-    enkripsi = enkripsi.replace("id1", action);
-    $('#enkripsi').val(enkripsi);
+    enkripsi = enkripsi.replace(enkripsi.substr(enkripsi.length - 1), action);
     console.log(action, enkripsi);
 		$('#qrcodeholder').empty();
 		$('#qrcodeholder').qrcode({
-			text    : "<?= base_url() ?>auth/addPresence?enkripsi="+$('#enkripsi').val()+"&key="+$('#keychipher').val(), //original code auth/addPresence?id_guru="+$('#id_guru').val()+"&tipe="+$('#tipe').val()
+			text    : "<?= base_url() ?>auth/addPresence?enkripsi="+enkripsi+"&key="+$('#keychipher').val(), //original code auth/addPresence?id_guru="+$('#id_guru').val()+"&tipe="+$('#tipe').val()
 			render  : "canvas", // 'canvas' or 'table'. Default value is 'canvas'
 			background : "#ffffff",
 			foreground : "#000000",
