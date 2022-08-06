@@ -15,7 +15,11 @@ class Kehadiran extends AUTH_Controller {
 
 		// begin::string yang di engkripsi dengan algoritma vigenere chipher
 		$key = "mega";
-		$text = "idgurux".$data['userdata']->userid."dantipex1";
+
+		
+		//  http://localhost/presensi/auth/addPresence?enkripsi=uhmudyd1dmrzibid1&key=mega
+
+		$text = "idgurux".$data['userdata']->userid."dantipex1"; // http://localhost/presensi/auth/addPresence?id_guru=1&tipe=1
 		$data["enkripsi"] = $this->chiper->encrypt($key, $text);
 		$data["keychipher"] = $key;
 		// end:: string yang di enkripsi

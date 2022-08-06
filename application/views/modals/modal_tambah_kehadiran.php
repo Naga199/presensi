@@ -2,8 +2,8 @@
   <div class="form-msg"></div>
   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <h3 id="title" style="display:block; text-align:center;">Form Kehadiran</h3>
-  <p>link sebelum dienkripsi : <?= base_url()."auth/addPresence?id_guru={$userdata->userid}&tipe=1" ?></p>
-  <p>link sesudah dienkripsi : <?= base_url()."auth/addPresence?enkripsi={$enkripsi}&key={$keychipher}" ?></p>
+  <p id="text-string">link sebelum dienkripsi : <?= base_url()."auth/addPresence?id_guru={$userdata->userid}&tipe=1" ?></p>
+  <p id="text-ciper" >link sesudah dienkripsi : <?= base_url()."auth/addPresence?enkripsi={$enkripsi}&key={$keychipher}" ?></p>
   <p class="text-center">link ini di enkripsi ganda dengan qr code</p>
   <form id="form-tambah-kehadiran" method="GET" style="width: 50%;margin: 0 auto;float: none;">
     <div class="input-group form-group">
@@ -42,8 +42,25 @@ $(function () {
 		$('#btn').prepend('<i class="glyphicon glyphicon-ok"></i>');
 		$('#tipe').val(action);
     let enkripsi = $('#enkripsi').val();
-    enkripsi = enkripsi.replace(enkripsi.substr(enkripsi.length - 1), action);
-    console.log(action, enkripsi);
+
+    // split string untuk enkripsi
+    let tipe = enkripsi.substr(enkripsi.length - 1)
+    tipe = tipe.replace(tipe,action);
+    enkripsi = enkripsi.substr(0,enkripsi.length - 1) + tipe;
+
+     // view hasil algoritma
+    let text_string = $("#text-string").html();
+    text_string = text_string.substr(0,text_string.length - 1) + tipe; //link sebelum dienkripsi : http://localhost/presensi/auth/addPresence?id_guru=2&tipe= trus digabung sama tipe => 1 / 2 
+    $("#text-string").html(text_string);
+    console.log(text_string);
+
+    let text_ciper = $("#text-ciper").html();
+    text_ciper_depan = text_ciper.substr(0,text_ciper.length - 14);
+    text_ciper_belakang = text_ciper.substr(text_ciper.length - 13);
+    text_ciper =  text_ciper_depan + tipe + text_ciper_belakang;
+    $("#text-ciper").html(text_ciper);
+    
+    // console.log(action, enkripsi, tipe);
 		$('#qrcodeholder').empty();
 		$('#qrcodeholder').qrcode({
 			text    : "<?= base_url() ?>auth/addPresence?enkripsi="+enkripsi+"&key="+$('#keychipher').val(), //original code auth/addPresence?id_guru="+$('#id_guru').val()+"&tipe="+$('#tipe').val()

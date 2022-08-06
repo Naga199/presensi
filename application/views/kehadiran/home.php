@@ -5,10 +5,10 @@
 <div class="box">
   <div class="box-header">
     <div class="col-md-5">
-        <button class="form-control btn btn-success" data-toggle="modal" data-id="check In" data-target="#tambah-kehadiran"><i class="glyphicon glyphicon-arrow-right"></i> Check In</button>
+        <button class="form-control btn btn-success" data-toggle="modal" data-id="check In" data-target="#tambah-kehadiran"><i class="glyphicon glyphicon-arrow-right"></i> absen masuk</button>
     </div>
     <div class="col-md-5">
-        <button class="form-control btn btn-warning" data-toggle="modal" data-id="check Out" data-target="#tambah-kehadiran"><i class="glyphicon glyphicon-arrow-left"></i> Check Out</button>
+        <button class="form-control btn btn-warning" data-toggle="modal" data-id="check Out" data-target="#tambah-kehadiran"><i class="glyphicon glyphicon-arrow-left"></i> absen keluar</button>
     </div>
     <div class="col-md-2">
         <a href="<?php echo base_url('kehadiran/export'); ?>" class="form-control btn btn-default"><i class="glyphicon glyphicon glyphicon-floppy-save"></i> Export Excel</a>
