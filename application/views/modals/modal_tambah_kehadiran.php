@@ -36,10 +36,16 @@
 $(function () {
 	$("#tambah-kehadiran").on("show.bs.modal", function (event) {
 		const myVal = $(event.relatedTarget).data('id');
+    console.log(myVal)
 		const action = (myVal.toLowerCase().trim() === 'check in') ? 1 : 2;
 		// alert(myVal+action);
-		$('#btn').text(myVal);
+    if(action == 1){
+      $('#btn').text("absen masuk");
 		$('#btn').prepend('<i class="glyphicon glyphicon-ok"></i>');
+    }else{
+      $('#btn').text("absen keluar");
+		$('#btn').prepend('<i class="glyphicon glyphicon-ok"></i>');
+    }
 		$('#tipe').val(action);
     let enkripsi = $('#enkripsi').val();
 
